@@ -119,13 +119,26 @@
       --flash-radius: 0px;
     }
 
-    .hero-logo {
+    .hero-logo-link {
       position: absolute;
       top: 26px;
       left: 50%;
       transform: translateX(-50%);
-      width: clamp(150px, 16vw, 180px);
       z-index: 4;
+      display: inline-block;
+      line-height: 0;
+      border-radius: 8px;
+    }
+
+    .hero-logo-link:focus-visible {
+      outline: 2px solid rgba(47, 140, 255, 0.9);
+      outline-offset: 4px;
+    }
+
+    .hero-logo {
+      position: relative;
+      display: block;
+      width: clamp(150px, 16vw, 180px);
       opacity: 0.96;
       filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.45));
       pointer-events: none;
@@ -326,6 +339,27 @@
       overflow: hidden;
       min-height: 380px;
       border-radius: var(--radius);
+    }
+
+    .morph-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      z-index: 3;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(8, 8, 8, 0.55);
+      color: #dbe2ea;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: opacity 400ms var(--ease-luxe);
     }
 
     .morph-layer {
@@ -564,6 +598,38 @@
       text-transform: uppercase;
     }
 
+    .footer-logo-link {
+      display: inline-block;
+      line-height: 0;
+      margin-bottom: 0.8rem;
+      border-radius: 8px;
+    }
+
+    .footer-logo-link:focus-visible {
+      outline: 2px solid rgba(47, 140, 255, 0.9);
+      outline-offset: 4px;
+    }
+
+    .footer-logo {
+      width: clamp(110px, 14vw, 140px);
+      opacity: 0.9;
+      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+    }
+
+    .footer-note a {
+      color: #9aa3ad;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      transition: color var(--transition-slow), border-color var(--transition-slow);
+    }
+
+    .footer-note a:hover,
+    .footer-note a:focus-visible {
+      color: #d5d9de;
+      border-color: rgba(47, 140, 255, 0.55);
+      outline: none;
+    }
+
     /* Responsive */
     @media (max-width: 1080px) {
       .services-grid {
@@ -607,6 +673,181 @@
       }
     }
 
+    @media (max-width: 768px) {
+      .container {
+        width: min(94vw, 1200px);
+      }
+
+      .hero-logo {
+        width: clamp(132px, 34vw, 168px);
+      }
+
+      .hero-logo-link {
+        top: 18px;
+      }
+
+      .hero-content {
+        padding: 0 1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.25rem, 7vw, 2.2rem);
+      }
+
+      .hero p {
+        font-size: clamp(0.75rem, 3.2vw, 0.95rem);
+        letter-spacing: 0.06em;
+      }
+
+      .philosophy,
+      .services,
+      .showroom,
+      .ecosystem,
+      .concierge {
+        padding-top: 8vh;
+        padding-bottom: 8vh;
+      }
+
+      .section-title {
+        font-size: clamp(1.05rem, 5.2vw, 1.6rem);
+        line-height: 1.3;
+      }
+
+      .philosophy-card,
+      .showroom-copy,
+      .ecosystem-copy {
+        padding: 1.25rem;
+      }
+
+      .service-card {
+        min-height: 190px;
+        padding: 1.15rem;
+      }
+
+      .power-card {
+        padding: 1rem;
+      }
+
+      .chat-card {
+        padding: 1rem;
+      }
+
+      .cta-btn {
+        padding: 0.9rem 1.15rem;
+        font-size: 0.64rem;
+        letter-spacing: 0.06em;
+      }
+
+      .hero.mobile-full-reveal .hero-flashlight {
+        animation: mobileHeroFullReveal 780ms var(--ease-luxe) forwards;
+      }
+
+      @keyframes mobileHeroFullReveal {
+        0% {
+          -webkit-mask-image: radial-gradient(circle 0px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+          mask-image: radial-gradient(circle 0px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+        }
+        100% {
+          -webkit-mask-image: radial-gradient(circle 180vmax at 50% 50%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 100%);
+          mask-image: radial-gradient(circle 180vmax at 50% 50%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,1) 100%);
+        }
+      }
+
+      .morph-hint {
+        opacity: 1;
+      }
+
+      .morph-card {
+        cursor: pointer;
+      }
+
+      .morph-card:hover .morph-base {
+        opacity: 1;
+        transform: scale(1.01);
+      }
+
+      .morph-card:hover .morph-hover {
+        opacity: 0;
+        transform: scale(1.05);
+      }
+
+      .morph-card.is-toggled .morph-base {
+        opacity: 0;
+        transform: scale(1.06);
+      }
+
+      .morph-card.is-toggled .morph-hover {
+        opacity: 1;
+        transform: scale(1.01);
+      }
+
+      .power {
+        min-height: auto;
+      }
+
+      .power-bg {
+        position: relative;
+        top: auto;
+        height: 52vh;
+        background-attachment: scroll;
+      }
+
+      .power-content {
+        position: relative;
+        inset: auto;
+        pointer-events: auto;
+        padding: 1rem 0 2.5rem;
+      }
+
+      .power-stack {
+        position: relative;
+        top: auto;
+        width: min(92vw, 560px);
+        margin: 0 auto;
+        gap: 0.9rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-logo {
+        width: 130px;
+      }
+
+      .hero-logo-link {
+        top: 14px;
+      }
+
+      .hero h1 {
+        letter-spacing: 0.045em;
+      }
+
+      .hero p {
+        font-size: 0.72rem;
+      }
+
+      .section-kicker {
+        letter-spacing: 0.14em;
+      }
+
+      .morph-hint {
+        font-size: 0.66rem;
+        padding: 0.4rem 0.62rem;
+      }
+
+      .chat-head {
+        font-size: 0.64rem;
+      }
+
+      .bubble {
+        font-size: 0.86rem;
+      }
+
+      .cta-btn {
+        width: 100%;
+        max-width: 340px;
+      }
+    }
+
     /* Fallback if backdrop-filter unavailable */
     @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
       .glass-card {
@@ -630,7 +871,9 @@
   <!-- 1) The Reveal -->
   <section class="hero" id="hero" aria-label="Hero">
     <div class="hero-flashlight" aria-hidden="true"></div>
-    <img class="hero-logo" src="images/zerostic_logo.svg" alt="Zerostic logo" />
+    <a class="hero-logo-link" href="https://zerostic.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Zerostic">
+      <img class="hero-logo" src="images/zerostic_logo.svg" alt="Zerostic logo" />
+    </a>
     <div class="hero-content">
       <h1>Elevating Luxury Cart.</h1>
       <p>A Digital Transformation Proposal by Zerostic.</p>
@@ -693,9 +936,10 @@
         </ul>
       </article>
 
-      <article class="glass-card morph-card reveal reveal-right" aria-label="Showroom image transition">
+      <article class="glass-card morph-card reveal reveal-right" id="showroomMorphCard" aria-label="Showroom image transition" role="button" tabindex="0" aria-pressed="false">
         <img class="morph-layer morph-base" src="images/asset_2.png" alt="Exterior of a Mercedes-AMG GT" />
         <img class="morph-layer morph-hover" src="images/asset_3.png" alt="Interior cockpit of a Mercedes-AMG GT" />
+        <span class="morph-hint">Tap to view interior</span>
       </article>
     </div>
   </section>
@@ -758,7 +1002,12 @@
     </div>
   </section>
 
-  <p class="footer-note">Proposal Experience Crafted by Zerostic for Luxury Cart</p>
+  <div class="footer-note">
+    <a class="footer-logo-link" href="https://zerostic.com" target="_blank" rel="noopener noreferrer" aria-label="Visit Zerostic">
+      <img class="footer-logo" src="images/zerostic_logo.svg" alt="Zerostic logo" />
+    </a>
+    <p>Proposal Experience Crafted by <a href="https://zerostic.com" target="_blank" rel="noopener noreferrer">Zerostic</a> for Luxury Cart · © <a href="https://zerostic.com" target="_blank" rel="noopener noreferrer">Zerostic</a></p>
+  </div>
 
   <script>
     // Shared motion preference check
@@ -770,7 +1019,10 @@
       if (!hero) return;
 
       const INTRO_DURATION = 1500;
+      const mobileQuery = window.matchMedia("(max-width: 768px)");
       let trackingEnabled = false;
+
+      const isMobile = () => mobileQuery.matches;
 
       const update = (x, y) => {
         const rect = hero.getBoundingClientRect();
@@ -803,21 +1055,52 @@
         window.addEventListener("touchmove", onTouchMove, { passive: true });
       };
 
+      const disableTracking = () => {
+        trackingEnabled = false;
+        window.removeEventListener("mousemove", onMouseMove);
+        window.removeEventListener("touchmove", onTouchMove);
+      };
+
       hero.style.setProperty("--mx", "78%");
       hero.style.setProperty("--my", "58%");
       hero.classList.add("hero-intro-flash");
 
       if (prefersReducedMotion) {
         hero.classList.remove("hero-intro-flash");
-        hero.classList.add("flashlight-active");
-        enableTracking();
+        if (isMobile()) {
+          hero.classList.add("mobile-full-reveal");
+        } else {
+          hero.classList.add("flashlight-active");
+          enableTracking();
+        }
         return;
       }
 
       setTimeout(() => {
         hero.classList.remove("hero-intro-flash");
+
+        if (isMobile()) {
+          hero.classList.add("mobile-full-reveal");
+          return;
+        }
+
         enableTracking();
       }, INTRO_DURATION);
+
+      mobileQuery.addEventListener("change", (e) => {
+        if (e.matches) {
+          disableTracking();
+          hero.classList.remove("flashlight-active");
+          hero.classList.add("mobile-full-reveal");
+          return;
+        }
+
+        if (!e.matches) {
+          hero.classList.remove("mobile-full-reveal");
+          hero.classList.add("flashlight-active");
+          enableTracking();
+        }
+      });
     })();
 
     // 2) Scroll reveal with Intersection Observer
@@ -870,7 +1153,54 @@
       onScroll();
     })();
 
-    // 4) AI chat typing animation (trigger on section in-view)
+    // 4) Mobile-only tap toggle for showroom morph card
+    (function initMobileShowroomToggle() {
+      const card = document.getElementById("showroomMorphCard");
+      const hint = card ? card.querySelector(".morph-hint") : null;
+      if (!card) return;
+
+      const mq = window.matchMedia("(max-width: 768px)");
+
+      const toggle = () => {
+        if (!mq.matches) return;
+        card.classList.toggle("is-toggled");
+        const isToggled = card.classList.contains("is-toggled");
+        card.setAttribute("aria-pressed", String(isToggled));
+        if (hint) {
+          hint.textContent = isToggled ? "Tap to view exterior" : "Tap to view interior";
+        }
+      };
+
+      const onKeyDown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      };
+
+      const syncMode = () => {
+        if (mq.matches) {
+          card.addEventListener("click", toggle);
+          card.addEventListener("keydown", onKeyDown);
+          if (hint) {
+            hint.textContent = card.classList.contains("is-toggled") ? "Tap to view exterior" : "Tap to view interior";
+          }
+        } else {
+          card.removeEventListener("click", toggle);
+          card.removeEventListener("keydown", onKeyDown);
+          card.classList.remove("is-toggled");
+          card.setAttribute("aria-pressed", "false");
+          if (hint) {
+            hint.textContent = "Tap to view interior";
+          }
+        }
+      };
+
+      syncMode();
+      mq.addEventListener("change", syncMode);
+    })();
+
+    // 5) AI chat typing animation (trigger on section in-view)
     (function initTypingAnimation() {
       const target = document.getElementById("typingTarget");
       const concierge = document.getElementById("concierge");
