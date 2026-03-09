@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zerostic × Luxury Cart — Digital Transformation Proposal</title>
+  <link rel="icon" type="image/ico" href="images/favicon.ico" />
+
+  <!-- Google Fonts: Option 2 selected -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-soft: #121212;
+      --text: #d5d9de;
+      --text-dim: #aab0b8;
+      --silver: #c7ccd3;
+      --neon-blue: #2f8cff;
+      --deep-gold: #c08a36;
+
+      --glass-bg: rgba(255, 255, 255, 0.07);
+      --glass-border: rgba(255, 255, 255, 0.18);
+      --glass-highlight: rgba(255, 255, 255, 0.1);
+
+      --radius: 18px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.45);
+      --shadow-blue: 0 0 30px rgba(47, 140, 255, 0.22);
+      --shadow-gold: 0 0 30px rgba(192, 138, 54, 0.2);
+
+      --ease-luxe: cubic-bezier(0.42, 0, 0.2, 1);
+      --transition-slow: 700ms var(--ease-luxe);
+
+      --mx: 50%;
+      --my: 50%;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Montserrat", sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(47, 140, 255, 0.08), transparent 35%),
+        radial-gradient(circle at 85% 85%, rgba(192, 138, 54, 0.08), transparent 32%),
+        var(--bg);
+    }
+
+    h1, h2, h3 {
+      font-family: "Syncopate", sans-serif;
+      letter-spacing: 0.06em;
+      color: var(--silver);
+      text-transform: uppercase;
+    }
+
+    p {
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    section {
+      position: relative;
+      width: 100%;
+    }
+
+    .container {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(1.3rem, 2.2vw, 2.2rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-kicker {
+      color: var(--deep-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .glass-card {
+      background: linear-gradient(145deg, var(--glass-bg), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--glass-border);
+      border-top-color: var(--glass-highlight);
+      border-left-color: var(--glass-highlight);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition-slow);
+    }
+
+    /* 1) Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: #0a0a0a;
+      --flash-radius: 0px;
+    }
+
+    .hero-logo {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(150px, 16vw, 180px);
+      z-index: 4;
+      opacity: 0.96;
+      filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.45));
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.92), rgba(0,0,0,0.96));
+    }
+
+    .hero-flashlight {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: url("images/asset_1.png") center/cover no-repeat;
+      -webkit-mask-image: radial-gradient(
+        circle var(--flash-radius) at var(--mx) var(--my),
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,1) 35%,
+        rgba(255,255,255,0.85) 48%,
+        rgba(255,255,255,0) 75%
+      );
+      mask-image: radial-gradient(
+        circle var(--flash-radius) at var(--mx) var(--my),
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,1) 35%,
+        rgba(255,255,255,0.85) 48%,
+        rgba(255,255,255,0) 75%
+      );
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+    .hero.flashlight-active {
+      --flash-radius: 190px;
+    }
+
+    .hero.hero-intro-flash .hero-flashlight {
+      animation: taillightIgnite 1450ms cubic-bezier(0.42, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes taillightIgnite {
+      0% {
+        -webkit-mask-image: radial-gradient(circle 0px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+        mask-image: radial-gradient(circle 0px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+      }
+      35% {
+        -webkit-mask-image: radial-gradient(circle 360px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+        mask-image: radial-gradient(circle 360px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+      }
+      72% {
+        -webkit-mask-image: radial-gradient(circle 260px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+        mask-image: radial-gradient(circle 260px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+      }
+      100% {
+        -webkit-mask-image: radial-gradient(circle 0px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+        mask-image: radial-gradient(circle 0px at 78% 58%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 35%, rgba(255,255,255,0.85) 48%, rgba(255,255,255,0) 75%);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.2rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeRise 1.4s var(--ease-luxe) 0.3s forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.6rem, 5vw, 4rem);
+      margin-bottom: 0.8rem;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+    }
+
+    .hero p {
+      color: var(--silver);
+      font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @keyframes fadeRise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* 2) Philosophy */
+    .philosophy {
+      padding: 10vh 0;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
+
+    .philosophy-card {
+      padding: 2rem;
+      min-height: 180px;
+      display: grid;
+      align-content: center;
+    }
+
+    .philosophy-card p {
+      font-size: clamp(1.02rem, 1.8vw, 1.25rem);
+      color: var(--text);
+    }
+
+    /* 3) Services */
+    .services {
+      padding: 8vh 0 10vh;
+    }
+
+    .services-grid {
+      margin-top: 1.8rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .service-card {
+      padding: 1.5rem;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service-card h3 {
+      font-size: 0.92rem;
+      margin-bottom: 0.9rem;
+      color: #e0e5ec;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-soft), var(--shadow-blue), var(--shadow-gold);
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    /* 4) Showroom */
+    .showroom {
+      padding: 10vh 0;
+    }
+
+    .showroom-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .showroom-copy {
+      padding: 2rem;
+    }
+
+    .showroom-copy ul {
+      list-style: none;
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .showroom-copy li {
+      color: var(--text);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .showroom-copy li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.78em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--neon-blue), var(--deep-gold));
+      box-shadow: 0 0 12px rgba(47, 140, 255, 0.5);
+    }
+
+    .morph-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      border-radius: var(--radius);
+    }
+
+    .morph-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .morph-base {
+      opacity: 1;
+      transform: scale(1.01);
+    }
+
+    .morph-hover {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+
+    .morph-card:hover .morph-base {
+      opacity: 0;
+      transform: scale(1.06);
+    }
+
+    .morph-card:hover .morph-hover {
+      opacity: 1;
+      transform: scale(1.01);
+    }
+
+    /* 5) Power section */
+    .power {
+      position: relative;
+      min-height: 160vh;
+    }
+
+    .power-bg {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: url("images/asset_4.png") center/cover no-repeat;
+      filter: brightness(0.55) contrast(1.08);
+    }
+
+    .power-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.8), rgba(0,0,0,0.42) 45%, rgba(0,0,0,0.72)),
+        radial-gradient(circle at 75% 30%, rgba(47, 140, 255, 0.15), transparent 35%);
+    }
+
+    .power-content {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .power-stack {
+      position: sticky;
+      top: 16vh;
+      width: min(560px, 90vw);
+      margin-left: auto;
+      margin-right: 5vw;
+      display: grid;
+      gap: 1rem;
+      pointer-events: auto;
+    }
+
+    .power-card {
+      padding: 1.3rem 1.2rem;
+    }
+
+    .power-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.45rem;
+    }
+
+    /* 6) Ecosystem */
+    .ecosystem {
+      padding: 12vh 0 10vh;
+    }
+
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .ecosystem-copy {
+      padding: 2rem;
+    }
+
+    .ecosystem-copy p + p {
+      margin-top: 0.85rem;
+    }
+
+    .phone-wrap {
+      display: grid;
+      place-items: center;
+      perspective: 1200px;
+    }
+
+    .phone-parallax {
+      will-change: transform;
+      transition: transform 80ms linear;
+    }
+
+    .phone-float {
+      width: min(420px, 82vw);
+      filter: drop-shadow(0 30px 45px rgba(0, 0, 0, 0.55));
+      animation: levitate 5s var(--ease-luxe) infinite alternate;
+    }
+
+    @keyframes levitate {
+      from { transform: translateY(-8px) rotateX(1deg); }
+      to { transform: translateY(12px) rotateX(-1deg); }
+    }
+
+    /* 7) AI Concierge + CTA */
+    .concierge {
+      padding: 10vh 0 14vh;
+    }
+
+    .chat-card {
+      width: min(760px, 92vw);
+      margin: 0 auto;
+      padding: 1.3rem;
+    }
+
+    .chat-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--silver);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .chat-body {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .bubble {
+      max-width: 90%;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.05);
+      color: #dbe2ea;
+      font-size: 0.92rem;
+    }
+
+    .bubble.user {
+      margin-left: auto;
+      background: linear-gradient(135deg, rgba(47, 140, 255, 0.2), rgba(255,255,255,0.03));
+    }
+
+    .bubble.ai {
+      margin-right: auto;
+      background: linear-gradient(135deg, rgba(192, 138, 54, 0.18), rgba(255,255,255,0.03));
+      min-height: 52px;
+    }
+
+    .typing-caret {
+      display: inline-block;
+      width: 9px;
+      animation: blink 1s steps(1, end) infinite;
+      color: var(--deep-gold);
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .cta-wrap {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cta-btn {
+      border: 1px solid rgba(255,255,255,0.34);
+      color: #f0f3f7;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.03)),
+        linear-gradient(120deg, rgba(47,140,255,0.25), rgba(192,138,54,0.26));
+      padding: 1rem 1.6rem;
+      border-radius: 999px;
+      font-family: "Syncopate", sans-serif;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform var(--transition-slow), box-shadow var(--transition-slow), border-color var(--transition-slow);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.38), 0 0 35px rgba(47, 140, 255, 0.18);
+    }
+
+    .cta-btn:hover,
+    .cta-btn:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.5), 0 0 45px rgba(47, 140, 255, 0.28), 0 0 30px rgba(192, 138, 54, 0.22);
+      border-color: rgba(255,255,255,0.6);
+      outline: none;
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 900ms var(--ease-luxe), transform 900ms var(--ease-luxe);
+    }
+
+    .reveal-left { transform: translateX(-44px); }
+    .reveal-right { transform: translateX(44px); }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+
+    /* Footer */
+    .footer-note {
+      text-align: center;
+      padding: 0 0 2.4rem;
+      color: #7d848e;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 1080px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .showroom-grid,
+      .ecosystem-grid,
+      .philosophy-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .power-stack {
+        margin-right: 3vw;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero.flashlight-active {
+        --flash-radius: 140px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: 210px;
+      }
+
+      .morph-card {
+        min-height: 280px;
+      }
+
+      .power {
+        min-height: 180vh;
+      }
+
+      .chat-head {
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Fallback if backdrop-filter unavailable */
+    @supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+      .glass-card {
+        background: rgba(24, 24, 24, 0.84);
+      }
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1) The Reveal -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <div class="hero-flashlight" aria-hidden="true"></div>
+    <img class="hero-logo" src="images/zerostic_logo.svg" alt="Zerostic logo" />
+    <div class="hero-content">
+      <h1>Elevating Luxury Cart.</h1>
+      <p>A Digital Transformation Proposal by Zerostic.</p>
+    </div>
+  </section>
+
+  <!-- 2) The Philosophy -->
+  <section class="philosophy" id="philosophy" aria-label="The Philosophy">
+    <div class="container">
+      <p class="section-kicker reveal">Vision Alignment</p>
+      <h2 class="section-title reveal">The Philosophy</h2>
+      <div class="philosophy-grid">
+        <article class="glass-card philosophy-card reveal reveal-left">
+          <p>Your inventory is world-class.</p>
+        </article>
+        <article class="glass-card philosophy-card reveal reveal-right">
+          <p>Your digital presence should match.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3) Zerostic Services -->
+  <section class="services" id="services" aria-label="Services We Provide">
+    <div class="container">
+      <p class="section-kicker reveal">Zerostic Capabilities</p>
+      <h2 class="section-title reveal">Services We Provide</h2>
+      <div class="services-grid">
+        <article class="glass-card service-card reveal">
+          <h3>Immersive Web Engineering</h3>
+          <p>High-performance websites with premium motion, conversion-driven UX, and technical SEO precision.</p>
+        </article>
+        <article class="glass-card service-card reveal">
+          <h3>Native Mobile Development</h3>
+          <p>Refined Android and iOS experiences engineered for high-net-worth client retention and service continuity.</p>
+        </article>
+        <article class="glass-card service-card reveal">
+          <h3>Custom Backend Architecture</h3>
+          <p>Inventory intelligence, CRM synchronization, document pipelines, and resilient API integrations.</p>
+        </article>
+        <article class="glass-card service-card reveal">
+          <h3>AI &amp; Automation</h3>
+          <p>Custom SLM agents, proactive service reminders, and intelligent workflows that reduce operational drag.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4) Digital Showroom -->
+  <section class="showroom" id="showroom" aria-label="The Digital Showroom">
+    <div class="container showroom-grid">
+      <article class="glass-card showroom-copy reveal reveal-left">
+        <p class="section-kicker">Web Experience</p>
+        <h2 class="section-title">The Digital Showroom</h2>
+        <p>A cinematic, confidence-building platform where every listing feels curated, verifiable, and immediate to inquire.</p>
+        <ul>
+          <li>Real-time inventory storytelling with rich media</li>
+          <li>Precision lead capture flows for premium buyers</li>
+          <li>Performance-first rendering for speed and SEO visibility</li>
+        </ul>
+      </article>
+
+      <article class="glass-card morph-card reveal reveal-right" aria-label="Showroom image transition">
+        <img class="morph-layer morph-base" src="images/asset_2.png" alt="Exterior of a Mercedes-AMG GT" />
+        <img class="morph-layer morph-hover" src="images/asset_3.png" alt="Interior cockpit of a Mercedes-AMG GT" />
+      </article>
+    </div>
+  </section>
+
+  <!-- 5) Power Under the Hood -->
+  <section class="power" id="power" aria-label="The Power Under the Hood">
+    <div class="power-bg" aria-hidden="true"></div>
+
+    <div class="power-content">
+      <div class="power-stack">
+        <article class="glass-card power-card reveal">
+          <h3>Dynamic Inventory Management</h3>
+          <p>Unified stock updates, pricing rules, and merchandising controls that keep listings accurate across channels.</p>
+        </article>
+        <article class="glass-card power-card reveal">
+          <h3>Smart CRM</h3>
+          <p>Lead scoring, concierge routing, and automated relationship workflows tuned for luxury buying journeys.</p>
+        </article>
+        <article class="glass-card power-card reveal">
+          <h3>Secure Document Vault</h3>
+          <p>End-to-end encrypted records for ownership history, financing paperwork, and compliance-grade access logs.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6) Client Ecosystem -->
+  <section class="ecosystem" id="ecosystem" aria-label="The Client Ecosystem">
+    <div class="container ecosystem-grid">
+      <article class="glass-card ecosystem-copy reveal reveal-left">
+        <p class="section-kicker">Mobile Retention Layer</p>
+        <h2 class="section-title">The Client Ecosystem</h2>
+        <p><strong>Digital Garage</strong>: a premium mobile hub where clients manage vehicles, service history, and ownership milestones.</p>
+        <p><strong>Post-Sale Maintenance Tracking</strong>: AI-assisted reminders, one-tap booking, and proactive service lifecycle messaging.</p>
+      </article>
+
+      <div class="phone-wrap reveal reveal-right">
+        <div class="phone-parallax" id="phoneParallax">
+          <img class="phone-float" src="images/asset_5.png" alt="Dark-mode mobile app mockup" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7) AI Concierge & CTA -->
+  <section class="concierge" id="concierge" aria-label="AI Concierge and Call to Action">
+    <div class="chat-card glass-card reveal">
+      <div class="chat-head">
+        <span>AI Concierge</span>
+        <span>Zerostic Intelligence Layer</span>
+      </div>
+      <div class="chat-body">
+        <div class="bubble user">Do you have a low-mileage AMG GT with full service records?</div>
+        <div class="bubble ai" id="typingTarget" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="cta-wrap reveal">
+      <button class="cta-btn" type="button">Let's Build the Future. Schedule a Demo.</button>
+    </div>
+  </section>
+
+  <p class="footer-note">Proposal Experience Crafted by Zerostic for Luxury Cart</p>
+
+  <script>
+    // Shared motion preference check
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // 1) Hero flashlight reveal via CSS mask position variables
+    (function initHeroFlashlight() {
+      const hero = document.querySelector(".hero");
+      if (!hero) return;
+
+      const INTRO_DURATION = 1500;
+      let trackingEnabled = false;
+
+      const update = (x, y) => {
+        const rect = hero.getBoundingClientRect();
+        const mx = ((x - rect.left) / rect.width) * 100;
+        const my = ((y - rect.top) / rect.height) * 100;
+        hero.style.setProperty("--mx", mx + "%");
+        hero.style.setProperty("--my", my + "%");
+      };
+
+      const onPointerMove = (x, y) => {
+        if (!trackingEnabled) return;
+        if (!hero.classList.contains("flashlight-active")) {
+          hero.classList.add("flashlight-active");
+        }
+        update(x, y);
+      };
+
+      const onMouseMove = (e) => {
+        onPointerMove(e.clientX, e.clientY);
+      };
+
+      const onTouchMove = (e) => {
+        if (!e.touches[0]) return;
+        onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      };
+
+      const enableTracking = () => {
+        trackingEnabled = true;
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("touchmove", onTouchMove, { passive: true });
+      };
+
+      hero.style.setProperty("--mx", "78%");
+      hero.style.setProperty("--my", "58%");
+      hero.classList.add("hero-intro-flash");
+
+      if (prefersReducedMotion) {
+        hero.classList.remove("hero-intro-flash");
+        hero.classList.add("flashlight-active");
+        enableTracking();
+        return;
+      }
+
+      setTimeout(() => {
+        hero.classList.remove("hero-intro-flash");
+        enableTracking();
+      }, INTRO_DURATION);
+    })();
+
+    // 2) Scroll reveal with Intersection Observer
+    (function initScrollReveal() {
+      const items = document.querySelectorAll(".reveal");
+      if (!items.length) return;
+
+      if (prefersReducedMotion) {
+        items.forEach((el) => el.classList.add("in-view"));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.16,
+        rootMargin: "0px 0px -30px 0px"
+      });
+
+      items.forEach((el) => observer.observe(el));
+    })();
+
+    // 3) Slow parallax for mobile app mockup
+    (function initPhoneParallax() {
+      const phone = document.getElementById("phoneParallax");
+      if (!phone || prefersReducedMotion) return;
+
+      let ticking = false;
+
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const rect = phone.getBoundingClientRect();
+          const viewport = window.innerHeight;
+          const progress = (rect.top + rect.height / 2 - viewport / 2) / viewport;
+          const translateY = progress * -26; // subtle, premium motion
+          const rotate = progress * 3;
+          phone.style.transform = `translateY(${translateY}px) rotateZ(${rotate * 0.15}deg)`;
+          ticking = false;
+        });
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // 4) AI chat typing animation (trigger on section in-view)
+    (function initTypingAnimation() {
+      const target = document.getElementById("typingTarget");
+      const concierge = document.getElementById("concierge");
+      if (!target || !concierge) return;
+
+      const message = "Yes. We can surface verified low-mileage AMG GT units instantly, including complete digital service history and financing pre-qualification options.";
+      const speed = 22;
+      let started = false;
+
+      const runTyping = () => {
+        if (started) return;
+        started = true;
+
+        if (prefersReducedMotion) {
+          target.textContent = message;
+          return;
+        }
+
+        let i = 0;
+        const type = () => {
+          target.innerHTML = message.slice(0, i) + '<span class="typing-caret">|</span>';
+          i += 1;
+          if (i <= message.length) {
+            setTimeout(type, speed);
+          } else {
+            target.textContent = message;
+          }
+        };
+
+        setTimeout(type, 250);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            runTyping();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.35,
+        rootMargin: "0px 0px -10% 0px"
+      });
+
+      observer.observe(concierge);
+    })();
+  </script>
+</body>
+</html>
